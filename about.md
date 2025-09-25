@@ -1,4 +1,4 @@
-# Template Mod
+# Higher or lower
 
 Simple "Higher or lower" game, guess which level has more downloads.
 Menu can be found in the bottom left of the creator menu. Have fun!
