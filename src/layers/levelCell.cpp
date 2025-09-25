@@ -53,12 +53,13 @@ class $modify(CustomLevelCell, LevelCell)
 		CCMenuItemSpriteExtra* creatorName = (CCMenuItemSpriteExtra*)mainMenu->getChildByID("creator-name");
 		creatorName->m_animationEnabled = false;
 		creatorName->setEnabled(false);
+		double cellHeight = this->m_height;
 
 		//setup for cell 2
 		if (strcmp(((CCLabelBMFont*)mainLayer->getChildByID("level-name"))->getString(), ((std::string)HighLow::getL2()->m_levelName).c_str()) == 0)
 		{
-			mainLayer->getChildByID("downloads-label")->setPosition(CCPoint(100000, 42));
-			mainLayer->getChildByID("downloads-icon")->setPosition(CCPoint(100000, 42));
+			mainLayer->getChildByID("downloads-label")->setVisible(false);
+			mainLayer->getChildByID("downloads-icon")->setVisible(false);
 
 			if(!HighLow::isGamePaused())
 			{
@@ -73,7 +74,7 @@ class $modify(CustomLevelCell, LevelCell)
 					buttonLower = CCMenuItemSpriteExtra::create(CircleButtonSprite::create(CCSprite::create("LowerButton.png"_spr)), this, menu_selector(CustomLevelCell::onButtonLower));
 					mainMenu->addChild(buttonLower);
 					buttonLower->setID("LowerButton"_spr);
-					buttonLower->setPosition(CCPoint(-15.0, -115.0));
+					buttonLower->setPosition(CCPoint(-25, cellHeight / 2 - 160));
 				}
 
 				if (buttonHigher == NULL)
@@ -81,7 +82,7 @@ class $modify(CustomLevelCell, LevelCell)
 					buttonHigher = CCMenuItemSpriteExtra::create(CircleButtonSprite::create(CCSprite::create("HigherButton.png"_spr)), this, menu_selector(CustomLevelCell::onButtonHigher));
 					mainMenu->addChild(buttonHigher);
 					buttonHigher->setID("HigherButton"_spr);
-					buttonHigher->setPosition(CCPoint(41.0, -115.0));
+					buttonHigher->setPosition(CCPoint(25, cellHeight/2 - 160));
 				}
 			}
 			else
@@ -99,23 +100,13 @@ class $modify(CustomLevelCell, LevelCell)
 					restart = CCMenuItemSpriteExtra::create(CCSprite::createWithSpriteFrameName("GJ_updateBtn_001.png"), this, menu_selector(CustomLevelCell::onRestart));
 					mainMenu->addChild(restart);
 					restart->setID("RestartButton"_spr);
-					restart->setPosition(CCPoint(42.0, -115.0));
+					restart->setPosition(CCPoint(0, cellHeight / 2 - 160));
 				}
 
-				mainLayer->getChildByID("downloads-label")->setPosition(CCPoint(257, 42));
-				mainLayer->getChildByID("downloads-label")->setScale(0.35);
-
-				mainLayer->getChildByID("downloads-icon")->setPosition(CCPoint(252, 42));
-				mainLayer->getChildByID("downloads-icon")->setScale(0.6);
+				mainLayer->getChildByID("downloads-icon")->setVisible(true);
+				mainLayer->getChildByID("downloads-label")->setVisible(true);
+				mainLayer->updateLayout(false);
 			}
-		}
-		else 
-		{
-			mainLayer->getChildByID("downloads-label")->setPosition(CCPoint(277, 42));
-			mainLayer->getChildByID("downloads-label")->setScale(0.6);
-
-			mainLayer->getChildByID("downloads-icon")->setPosition(CCPoint(257, 42));
-			mainLayer->getChildByID("downloads-icon")->setScale(1.0);
 		}
 
 		return;

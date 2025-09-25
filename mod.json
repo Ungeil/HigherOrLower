@@ -1,5 +1,5 @@
 {
-	"geode": "4.4.0",
+	"geode": "4.8.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -8,9 +8,20 @@
 	},
 	"id": "ungeil.higher_or_lower",
 	"name": "Higher or Lower",
-	"version": "v1.0.1",
+	"version": "v1.0.3",
 	"developer": "Ungeil",
+    "dependencies": {
+        "geode.node-ids": {
+            "version": ">=1.21.1",
+            "importance": "required"
+        }
+    },
 	"description": "",
+	"links": {
+		"homepage": "https://linktr.ee/Ungeil",
+		"source": "https://github.com/Ungeil/HigherOrLower",
+		"community": "https://discord.gg/FxeVZJSP48"
+	},
     	"resources": {
         	"sprites": [
             	"resources/*.png"

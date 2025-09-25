@@ -22,7 +22,7 @@ class $modify(CustomCreatorLayer, CreatorLayer) {
 		auto menu = this->getChildByID("bottom-left-menu");
 		menu->addChild(hlButton);
 		hlButton->setID("HLButton"_spr);
-		hlButton->setPosition(CCPoint(25.0, 25.0));
+		menu->updateLayout();
 		return true;
 	}
 

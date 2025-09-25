@@ -13,13 +13,14 @@ class $modify(CustomLevelBrowserLayer, LevelBrowserLayer) {
 		if (HighLow::getIsHLMenu())
 		{
 			//not removing to prevent crashes
-			this->getChildByID("info-menu")->setPositionX(1000000);
-			this->getChildByID("level-count-label")->setPositionX(1000000);
-			this->getChildByID("search-menu")->setPositionX(1000000);
-			this->getChildByIDRecursive("refresh-button")->setPositionX(1000000);
-			this->getChildByID("page-menu")->setPositionX(1000000);
-			this->getChildByID("next-page-menu")->setPositionX(1000000);
-			this->getChildByID("prev-page-menu")->setPositionX(1000000);
+			this->getChildByID("level-count-label")->setVisible(false);
+			this->getChildByID("search-menu")->setVisible(false);
+			this->getChildByIDRecursive("refresh-button")->setVisible(false);
+			this->getChildByID("page-menu")->setVisible(false);
+			this->getChildByID("next-page-menu")->setVisible(false);
+			this->getChildByID("prev-page-menu")->setVisible(false);
+			auto infoMenu = (CCMenuItem*) this->getChildByID("info-menu");
+			((CCMenuItem*) infoMenu->getChildByID("info-button"))->setTarget(this, menu_selector(CustomLevelBrowserLayer::onInfoButton));
 		}
 		return true;
 	}
@@ -33,7 +34,6 @@ class $modify(CustomLevelBrowserLayer, LevelBrowserLayer) {
 			std::stringstream ss;
 			ss << "Score: " << HighLow::getScore();
 			auto text = ss.str();
-			//auto text = std::format("Score: {}", HighLow::getScore());
 			if (title != NULL) title->setString(text.c_str());
 		}
 	}
@@ -59,7 +59,6 @@ class $modify(CustomLevelBrowserLayer, LevelBrowserLayer) {
 			std::stringstream ss;
 			ss << "Score: " << HighLow::getScore();
 			auto text = ss.str();
-			//auto text = std::format("Score: {}", HighLow::getScore());
 			if (title != NULL) title->setString(text.c_str());
 		}
 	}
@@ -70,9 +69,17 @@ class $modify(CustomLevelBrowserLayer, LevelBrowserLayer) {
 		std::stringstream ss;
 		ss << "Score: " << HighLow::getScore();
 		auto text = ss.str();
-		//auto text = std::format("Score: {}", HighLow::getScore());
 		if (title != NULL) title->setString(text.c_str());
 
 		LevelBrowserLayer::onRefresh(p0);
+	}
+
+	void onInfoButton(CCObject* sender) 
+	{
+		FLAlertLayer::create(
+			"Higher or lower",
+			"This is the Higher or lower game, your goal is to guess which these two levels has more downloads!\nYour Score is tracked at the top.\nThanks for using my mod <3",
+			"OK"
+		)->show();
 	}
 };

@@ -15,7 +15,10 @@ $on_mod(Loaded)
 		ServerUtils::getOnlineLevels(searchObj, [](std::shared_ptr<std::vector<Ref<GJGameLevel>>> levels)
 		{
 			HighLow::addLevels(levels);
-			if(g_data.levels.size() > 2) HighLow::reset();
+			if (g_data.levels.size() > 2) { 
+				HighLow::reset(); 
+				HighLow::generateNew();
+			}
 		});
 	}
 }

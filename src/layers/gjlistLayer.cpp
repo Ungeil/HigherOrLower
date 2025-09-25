@@ -13,7 +13,6 @@ class $modify(CustomListLayer, GJListLayer) {
 			std::stringstream ss;
 			ss << "Score: " << HighLow::getScore();
 			auto text = ss.str();
-			//auto text = std::format("Score: {}", HighLow::getScore());
 			if (title != NULL) title->setString(text.c_str());
 		}
 		return true;
